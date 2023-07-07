@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Program Eligibility Screener</title>
+  <style>
+    /* Add your custom CSS styles here */
+  </style>
+</head>
+<body>
+  <h1>Program Eligibility Screener</h1>
+
+  <form id="eligibilityForm">
+    <label for="residency">Are you a resident of New Jersey?</label>
+    <select id="residency" required>
+      <option value="">Please select</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+
+    <label for="householdSize">Household Size:</label>
+    <input type="number" id="householdSize" required>
+
+    <label for="grossIncome">Gross Monthly Income (before taxes):</label>
+    <input type="number" id="grossIncome" required>
+
+    <!-- Add more fields for other questions -->
+
+    <button type="submit">Check Eligibility</button>
+  </form>
+
+  <div id="eligibilityResult" style="display: none;">
+    <h2>Eligibility Result</h2>
+    <p id="resultText"></p>
+  </div>
+
+  <script>
+    const eligibilityForm = document.getElementById('eligibilityForm');
+    const eligibilityResult = document.getElementById('eligibilityResult');
+    const resultText = document.getElementById('resultText');
+
+    eligibilityForm.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Collect user inputs
+      const residency = document.getElementById('residency').value;
+      const householdSize = parseInt(document.getElementById('householdSize').value);
+      const grossIncome = parseInt(document.getElementById('grossIncome').value);
+
+      // Perform eligibility calculations
+      // Replace the conditions below with your actual eligibility criteria
+
+      // Example eligibility check for SNAP
+      const isSNAPEligible = (residency === 'yes' && householdSize >= 1 && grossIncome < 2000);
+
+      // Example eligibility check for other programs
+      // const isProgramAEligible = ...
+      // const isProgramBEligible = ...
+
+      // Display eligibility result
+      if (isSNAPEligible) {
+        resultText.textContent = 'Congratulations! You may be eligible for SNAP.';
+      } else {
+        resultText.textContent = 'You may not be eligible for SNAP.';
+      }
+
+      // Show the eligibility result section
+      eligibilityResult.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
